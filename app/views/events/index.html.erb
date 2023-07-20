@@ -1,6 +1,8 @@
 <h1>List of Events</h1>
 <% if user_signed_in? %>
   <p> Logged in as <%= current_user.email %></p>
+  <%= link_to "Create New Event", new_event_path %>
+  <br>
   <%= link_to "Logout", destroy_user_session_path, data: { turbo_method: :delete } %>
   <ul>
     <% @events.each do |event| %>
