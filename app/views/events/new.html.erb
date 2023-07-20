@@ -1,0 +1,12 @@
+<h1>New Event</h1>
+<%= form_with(model: @event, url: events_path) do |form| %>
+  <%= form.label :title , style: "display: block", class:"form-label" %>
+  <%= form.text_field :title, class:"form-control"  %>
+  <%= form.label :description, style: "display: block", class:"form-label" %>
+  <%= form.text_area :description, class:"form-label" %>
+  <%= form.label :date, style: "display: block", class:"form-label" %>
+  <%= form.date_field :date, class:"form-label"  %>
+  <%= form.label :location, style: "display: block", class:"form-label" %>
+  <%= form.text_field :location, class:"form-label"%>
+  <%= form.submit "Create Event" %>
+<% end %>
