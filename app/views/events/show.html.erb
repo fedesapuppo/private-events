@@ -2,3 +2,27 @@
 <p><%= @event.description %></p>
 <p>Date: <%= @event.date %></p>
 <p>Location: <%= @event.location %></p>
+<% if user_signed_in? %>
+  <% if current_user.attending?(@event) %>
+    <%= form_with(model: @attendance, url: attendance_path(@attendance), method: :delete) do |form| %>
+      <%= form.submit "Unattend Event", class: "btn btn-danger" %>
+    <% end %>
+  <% else %>
+    <%= form_with(url: attendances_path) do |form| %>
+      <%= form.hidden_field :attended_event_id, value: @event.id %>
+      <%= form.submit "Attend Event", class: "btn btn-primary" %>
+    <% end %>
+  <% end %>
+<% else %>
+  <%= link_to "Sign in to Attend", new_user_session_path, class: "btn btn-primary" %>
+<% end %>
+<h2>Attendees:</h2>
+<% if @attendees.any? %>
+  <ul>
+    <% @attendees.each do |attendee| %>
+      <li><%= attendee.email %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No attendees yet.</p>
+<% end %>

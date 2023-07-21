@@ -10,4 +10,12 @@ class User < ApplicationRecord
   def created_events
     events
   end
+
+  def attending?(event)
+    attended_events.include?(event)
+  end
+
+  def attendance_for(event)
+    attendances.find_by(event: event)
+  end
 end
