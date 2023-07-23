@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
   def index
     @events = Event.all
+    @user = current_user if user_signed_in?
   end
 
   def show

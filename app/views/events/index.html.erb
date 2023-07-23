@@ -1,19 +1,21 @@
-<h1>List of Events</h1>
 <% if user_signed_in? %>
-  <p> Logged in as <%= current_user.email %></p>
+  <p> Logged in as <%= @user.email %></p>
+  <%= link_to "Profile", user_path(@user) %>
+  <br>
   <%= link_to "Create New Event", new_event_path %>
   <br>
   <%= link_to "Logout", destroy_user_session_path, data: { turbo_method: :delete } %>
-  <ul>
-    <% @events.each do |event| %>
-      <li>
-        <h2><%= link_to event.title, event_path(event) %></h2>
-        <p><%= event.description %></p>
-        <p>Date: <%= event.date %></p>
-        <p>Location: <%= event.location %></p>
-      </li>
-    <% end %>
-  </ul>
+  <br>
+  <h1>List of Events</h1>
+  <% @events.each do |event| %>
+    <li>
+      <h2><%= link_to event.title, event_path(event) %></h2>
+      <p><%= event.description %></p>
+      <p>Date: <%= event.date %></p>
+      <p>Location: <%= event.location %></p>
+    </li>
+  <% end %>
+</ul>
 <% else %>
   To see the events, you need to Log In or Sing Up <br>
   <%= link_to "Login", new_user_session_path %>
