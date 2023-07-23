@@ -16,13 +16,42 @@ class EventsController < ApplicationController
     @event = Event.new
   end
 
+  # def create
+  #   @event = current_user.events.build(event_params)
+  #   if @event.save
+  #     redirect_to @event, notice: "Event was successfully created."
+  #   else
+  #     render :new
+  #   end
+  # end
+
   def create
-    @event = current_user.events.build(event_params)
+    @event = Event.new(event_params)
+
     if @event.save
       redirect_to @event, notice: "Event was successfully created."
     else
       render :new
     end
+  end
+
+  def edit
+    @event = current_user.events.find(params[:id])
+  end
+
+  def update
+    @event = current_user.events.find(params[:id])
+    if @event.update(event_params)
+      redirect_to @event, notice: "Event updated successfully."
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @event = current_user.events.find(params[:id])
+    @event.destroy
+    redirect_to events_path, notice: "Event deleted successfully."
   end
 
   private

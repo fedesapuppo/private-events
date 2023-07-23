@@ -1,0 +1,11 @@
+<%= form_with(model: event, local: true) do |form| %>
+  <%= form.label :title , style: "display: block", class:"form-label"%>
+  <%= form.text_field :title , class:"form-control"%>
+  <%= form.label :description , style: "display: block", class:"form-label"%>
+  <%= form.text_area :description, class:"form-control" %>
+  <%= form.label :date , style: "display: block", class:"form-label"%>
+  <%= form.date_select :date, class:"form-control" %>
+  <%= form.label :location , style: "display: block", class:"form-label"%>
+  <%= form.text_field :location , class:"form-control"%>
+  <%= form.submit %>
+<% end %>
