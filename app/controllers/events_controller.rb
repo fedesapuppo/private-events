@@ -2,6 +2,8 @@ class EventsController < ApplicationController
   def index
     @events = Event.all
     @user = current_user if user_signed_in?
+    @past_events = Event.past
+    @upcoming_events = Event.upcoming
   end
 
   def show
